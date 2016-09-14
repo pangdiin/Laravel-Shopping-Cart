@@ -3,7 +3,15 @@
 @section('title','Laravel Shopping Cart')
 
 @section('content')
-
+@if(Session::has('success'))
+<div class="row">
+	<div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
+		<div id="charge-message" class="alert alert-success">
+			{{ Session::get('success')}}
+		</div>
+	</div>
+</div>
+@endif
 @foreach($products->chunk(3) as $productChunk)
 <div class="row">
 	@foreach($productChunk as $product)
@@ -15,7 +23,7 @@
 	        <p class="description">{{ $product->description }}</p>
 	        <div class="clearfix">
 	        <div class="pull-left price">${{ $product->price }}</div>
-	        	<a href="#" class="btn btn-default pull-right btn-success" role="button">Add to cart</a>	
+	        	<a href="{{ route('product.addToCart',['id'=> $product->id]) }}" class="btn btn-default pull-right btn-success" role="button">Add to cart</a>	
 	        </div>
 	      </div>
 	    </div>

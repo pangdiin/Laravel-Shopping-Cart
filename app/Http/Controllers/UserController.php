@@ -28,7 +28,9 @@ class UserController extends Controller
     		]);
     	$user->save();
 
-    	return redirect()->route('product.index');
+    	Auth::login($user);	 //auto login after signing up
+
+    	return redirect()->route('user.profile');
     }
     public function getSignin()
     {
@@ -58,6 +60,6 @@ class UserController extends Controller
     public function getLogout()
     {
     	Auth::logout();
-    	// return redirect()->back();
+    	return redirect()->back();
     }
 }
