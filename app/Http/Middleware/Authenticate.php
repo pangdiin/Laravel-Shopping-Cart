@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 class Authenticate
@@ -18,9 +19,11 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->guest()) {
+
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
+                Session::put('oldUrl', $request->url()); //get back to the last page after log in
                 return redirect()->route('user.signin');
             }
         }
