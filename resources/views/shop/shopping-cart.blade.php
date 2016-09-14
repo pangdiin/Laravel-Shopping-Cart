@@ -18,8 +18,8 @@
 							<div class="btn-group" role="group">
 								<button type="button" class="btn btn-primary dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Active <span class="caret"></span></button>
 							    <ul class="dropdown-menu">
-							      <li><a href="#">Remove by 1</a></li>
-							      <li><a href="#">Remove All</a></li>
+							      <li><a href="{{ route('product.reduceByOne',['id'=> $product['item']['id']]) }}">Remove by 1</a></li>
+							      <li><a href="{{ route('product.remove',['id'=> $product['item']['id']]) }}">Remove All</a></li>
 							    </ul>
 							</div>
 						</li>
